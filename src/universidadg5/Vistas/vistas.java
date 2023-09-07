@@ -10,5 +10,5 @@ package universidadg5.Vistas;
  * @author VILLORD
  */
 public class vistas {
-    
+    //lista a ver 
 }
