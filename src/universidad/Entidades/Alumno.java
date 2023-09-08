@@ -22,7 +22,7 @@ public class Alumno {
     
     public Alumno(){}
 
-    public Alumno(int idAlumno, int dni, String nombre, String apellido, boolean activo, LocalDate fNac) {
+    public Alumno(int idAlumno, int dni, String nombre, String apellido, LocalDate fNac, boolean  activo) {
         this.idAlumno = idAlumno;
         this.dni = dni;
         this.nombre = nombre;
@@ -31,7 +31,7 @@ public class Alumno {
         this.fNac = fNac;
     }
 
-    public Alumno(int dni, String nombre, String apellido, boolean activo, LocalDate fNac) {
+    public Alumno(int dni, String nombre, String apellido, LocalDate fNac, boolean activo) {
         this.dni = dni;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -90,7 +90,7 @@ public class Alumno {
 
     @Override
     public String toString() {
-        return "Alumno{" + "idAlumno=" + idAlumno + ", dni=" + dni + ", nombre=" + nombre + ", apellido=" + apellido + ", activo=" + activo + ", fNac=" + fNac + '}';
+        return "idAlumno: " + idAlumno +" | "+ " dni: " + dni +" | "+" nombre: " + nombre +" | " +" apellido: " + apellido +" | "+" activo: " + activo +" | "+" fecha de nacimiento: " + fNac;
     }
     
     public void suts(){
