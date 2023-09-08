@@ -1,4 +1,4 @@
-package universidadg5.AccesoADatos;
+package UniversidadMain;
 public class UniversidadG5 {
 
     public static void main(String[] args) {

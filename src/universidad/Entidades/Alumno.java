@@ -93,6 +93,8 @@ public class Alumno {
         return "Alumno{" + "idAlumno=" + idAlumno + ", dni=" + dni + ", nombre=" + nombre + ", apellido=" + apellido + ", activo=" + activo + ", fNac=" + fNac + '}';
     }
     
-    
+    public void suts(){
+        System.out.println("actualizado");
+    }
     
 }
