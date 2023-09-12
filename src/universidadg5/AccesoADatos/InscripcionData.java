@@ -186,7 +186,27 @@ public class InscripcionData {
         return alumnos;
     }
     
-    
+    public List<Materia> optenerMateriasNOCurasdas(int idAlumno){
+        
+        // llamar a todas las materias
+        ArrayList<Materia> materias = (ArrayList<Materia>) matData.listarMaterias();
+        
+        // materias de alumno
+        ArrayList<Materia> materiasCursadas = (ArrayList<Materia>) obstenerMateriasCursadas(idAlumno);
+        
+        //recorro las materias del alumno
+        for (Materia materiasCursada : materiasCursadas) {
+            //recorro todas materias
+            for (int i = 0; i < materias.size(); i++) {
+                //Si hay concidencia en el ID, lo borro de la lista
+                if (materiasCursada.getIdMateria() ==  materias.get(i).getIdMateria()){
+                    materias.remove(i);
+                }
+            }
+        }
+        
+        return materias;
+    }
     
     
     
