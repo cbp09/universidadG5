@@ -111,7 +111,7 @@ public class InscripcionData {
             while (rs.next()) {
                 materia = new Materia();
                 materia.setIdMateria(rs.getInt("inscripcion.idMat"));
-                materia.setNombre(rs.getString("noMat"));
+                materia.setNombre(rs.getString("nomMat"));
                 materia.setAnioMateria(rs.getInt("año"));
 
                 materias.add(materia);
@@ -187,29 +187,32 @@ public class InscripcionData {
     }
     
     public List<Materia> optenerMateriasNOCurasdas(int idAlumno){
+        // Hay que testear esto 12/09
+        String sql = "SELECT * " +
+                    "FROM materias as m" +
+                    "WHERE m.idMateria NOT IN (SELECT idMateria FROM inscripcion WHERE idAlumno = "+idAlumno+");";
         
-        // llamar a todas las materias
-        ArrayList<Materia> materias = (ArrayList<Materia>) matData.listarMaterias();
+        ArrayList<Materia> materias = new ArrayList<Materia>();
         
-        // materias de alumno
-        ArrayList<Materia> materiasCursadas = (ArrayList<Materia>) obstenerMateriasCursadas(idAlumno);
-        
-        //recorro las materias del alumno
-        for (Materia materiasCursada : materiasCursadas) {
-            //recorro todas materias
-            for (int i = 0; i < materias.size(); i++) {
-                //Si hay concidencia en el ID, lo borro de la lista
-                if (materiasCursada.getIdMateria() ==  materias.get(i).getIdMateria()){
-                    materias.remove(i);
-                }
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            Materia materia;
+            while (rs.next()) {
+                materia = new Materia();
+                materia.setIdMateria(rs.getInt("inscripcion.idMat"));
+                materia.setNombre(rs.getString("nomMat"));
+                materia.setAnioMateria(rs.getInt("año"));
+
+                materias.add(materia);
             }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al obtener inscripciones " + ex.getMessage());
         }
-        
         return materias;
     }
     
-    
-    
-    
-    
+
 }
