@@ -124,9 +124,70 @@ public class InscripcionData {
         return materias;
     }
 
-   // estaba por agregar el método de materias no cursadas pensando que sería lo mismo que arriba excepto que en el where sería idAlumno != ?
-   // pero no sería así porque te mostraría todas las materias por más que ese alumno la haya cursado
-   // mañana lo vemos, lo dejo anotado para no olvidarme
+    public void borrarInscripcionMateriaAlumno(int idAlumno, int idMateria) {
+
+        String sql = "UPDATE inscripcion SET estado = 0 WHERE idAlumno =" + idAlumno + " and idMat=" + idMateria;
+
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            int exito = ps.executeUpdate();
+            if (exito == 1) {
+                JOptionPane.showMessageDialog(null, "Inscripción eliminada");
+            } else {
+                JOptionPane.showMessageDialog(null, "No se pudo eliminar la inscripción");
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla inscripciones");
+        }
+    }
+
+    public void actualizarNota(int idAlumno, int idMateria, double nota) {
+        String sql = "UPDATE inscripcion SET nota =" + nota + " WHERE idAlumno=" + idAlumno + " and idMat=" + idMateria;
+
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            int exito = ps.executeUpdate();
+            if (exito == 1) {
+                JOptionPane.showMessageDialog(null, "Se ha modificado la nota exitosamente");
+            } else {
+                JOptionPane.showMessageDialog(null, "No se pudo actualizar la nota");
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla inscripciones");
+        }
+    }
+
+    public List<Alumno> obtenerAlumnosXMateria(int idMateria){
+        String sql = "SELECT alumno.* FROM alumno JOIN inscripcion ON(alumno.idAlumno = inscripcion.idAlumno) WHERE inscripcion.idMateria = "+idMateria;
+        ArrayList<Alumno> alumnos = new ArrayList<Alumno>();
+        
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            Alumno alumno;
+            while(rs.next()){
+                alumno = new Alumno();
+                alumno.setIdAlumno(rs.getInt("idAlumno"));
+                alumno.setDni(rs.getInt("dni"));
+                alumno.setApellido(rs.getString("apellido"));
+                alumno.setNombre(rs.getString("nombre"));
+                alumno.setfNac(rs.getDate("fechadn").toLocalDate());
+                alumno.setActivo(true);
+                
+                alumnos.add(alumno);
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "No se pudo acceder a la tabla alumnos");
+        }
+        return alumnos;
+    }
+    
+    
+    
     
     
     
