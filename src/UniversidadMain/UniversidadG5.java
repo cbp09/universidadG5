@@ -43,13 +43,13 @@ public class UniversidadG5 {
 ////        
 //        consultaMaterias.eliminarMateria(materia2.getIdMateria());
 
-        InscripcionData inscripciones = new InscripcionData();
+       /* InscripcionData inscripciones = new InscripcionData();
         
         ArrayList<Materia> materias = (ArrayList<Materia>) inscripciones.optenerMateriasNOCurasdas(9);
         
         for (Materia materia : materias) {
             System.out.println(materia); 
-        }
+        }*/ // COMENTE ESTO**
       
     }
     
