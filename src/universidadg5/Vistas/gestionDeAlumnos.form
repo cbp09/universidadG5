@@ -59,12 +59,11 @@
                                       <EmptySpace min="45" pref="45" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="JB_buscar" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jButton5" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jbSalirGA" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <Component id="RB_activo" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="TF_nombre" alignment="0" min="-2" pref="183" max="-2" attributes="0"/>
-                                  <Component id="DC_fechaNacimiento" alignment="0" min="-2" pref="183" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -105,16 +104,13 @@
                   <Component id="RB_activo" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                  <Component id="DC_fechaNacimiento" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+              <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="JB_eliminar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="JB_guardar" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButton5" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jbSalirGA" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
           </Group>
@@ -178,17 +174,18 @@
         <Property name="text" type="java.lang.String" value="Guardar"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton5">
+    <Component class="javax.swing.JButton" name="jbSalirGA">
       <Properties>
         <Property name="text" type="java.lang.String" value="Salir"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbSalirGAActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JRadioButton" name="RB_activo">
       <Properties>
         <Property name="text" type="java.lang.String" value="(Marcar si el alumno est&#xe1; activo)"/>
       </Properties>
-    </Component>
-    <Component class="com.toedter.calendar.JDateChooser" name="DC_fechaNacimiento">
     </Component>
   </SubComponents>
 </Form>

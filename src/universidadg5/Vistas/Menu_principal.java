@@ -4,6 +4,8 @@
  */
 package universidadg5.Vistas;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author luuci
@@ -36,7 +38,7 @@ public class Menu_principal extends javax.swing.JFrame {
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
-        jMenu6 = new javax.swing.JMenu();
+        jmSalir = new javax.swing.JMenu();
 
         jMenu5.setText("jMenu5");
 
@@ -114,8 +116,18 @@ public class Menu_principal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu4);
 
-        jMenu6.setText("Salir");
-        jMenuBar1.add(jMenu6);
+        jmSalir.setText("Salir");
+        jmSalir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jmSalirMouseExited(evt);
+            }
+        });
+        jmSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmSalirActionPerformed(evt);
+            }
+        });
+        jMenuBar1.add(jmSalir);
 
         setJMenuBar(jMenuBar1);
 
@@ -206,6 +218,16 @@ public class Menu_principal extends javax.swing.JFrame {
         escritorio.moveToFront(GUI);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
+    private void jmSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmSalirActionPerformed
+        // MENU SALIR(NO FUNCIONA)
+        //System.exit(0);
+    }//GEN-LAST:event_jmSalirActionPerformed
+
+    private void jmSalirMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jmSalirMouseExited
+        // Boton de salir
+        System.exit(0);
+    }//GEN-LAST:event_jmSalirMouseExited
+
     /**
      * @param args the command line arguments
      */
@@ -248,12 +270,12 @@ public class Menu_principal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
-    private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenu jmSalir;
     // End of variables declaration//GEN-END:variables
 }

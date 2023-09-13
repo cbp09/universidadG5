@@ -58,6 +58,11 @@ public class gestionMateria extends javax.swing.JInternalFrame {
         jbGuardarYModificar.setText("GUARDAR");
 
         jbSalirDeMaterias.setText("SALIR");
+        jbSalirDeMaterias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbSalirDeMateriasActionPerformed(evt);
+            }
+        });
 
         jbBuscarCodigo.setText("BUSCAR");
 
@@ -144,6 +149,11 @@ public class gestionMateria extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jbSalirDeMateriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirDeMateriasActionPerformed
+        // BOTON DE SALIR
+        System.exit(0);
+    }//GEN-LAST:event_jbSalirDeMateriasActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

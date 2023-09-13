@@ -37,9 +37,8 @@ public class gestionDeAlumnos extends javax.swing.JInternalFrame {
         jButton2 = new javax.swing.JButton();
         JB_eliminar = new javax.swing.JButton();
         JB_guardar = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        jbSalirGA = new javax.swing.JButton();
         RB_activo = new javax.swing.JRadioButton();
-        DC_fechaNacimiento = new com.toedter.calendar.JDateChooser();
 
         setClosable(true);
 
@@ -63,7 +62,12 @@ public class gestionDeAlumnos extends javax.swing.JInternalFrame {
 
         JB_guardar.setText("Guardar");
 
-        jButton5.setText("Salir");
+        jbSalirGA.setText("Salir");
+        jbSalirGA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbSalirGAActionPerformed(evt);
+            }
+        });
 
         RB_activo.setText("(Marcar si el alumno está activo)");
 
@@ -103,10 +107,9 @@ public class gestionDeAlumnos extends javax.swing.JInternalFrame {
                                         .addGap(45, 45, 45)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(JB_buscar)
-                                            .addComponent(jButton5)))
+                                            .addComponent(jbSalirGA)))
                                     .addComponent(RB_activo)
-                                    .addComponent(TF_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(DC_fechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(TF_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(221, 221, 221)
                         .addComponent(jLabel1)))
@@ -135,24 +138,26 @@ public class gestionDeAlumnos extends javax.swing.JInternalFrame {
                     .addComponent(jLabel5)
                     .addComponent(RB_activo))
                 .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
-                    .addComponent(DC_fechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(22, 22, 22)
+                .addComponent(jLabel6)
+                .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
                     .addComponent(JB_eliminar)
                     .addComponent(JB_guardar)
-                    .addComponent(jButton5))
+                    .addComponent(jbSalirGA))
                 .addGap(31, 31, 31))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jbSalirGAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirGAActionPerformed
+        // SALIR DE EL PROGRAMA 
+        System.exit(0);
+    }//GEN-LAST:event_jbSalirGAActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.toedter.calendar.JDateChooser DC_fechaNacimiento;
     private javax.swing.JButton JB_buscar;
     private javax.swing.JButton JB_eliminar;
     private javax.swing.JButton JB_guardar;
@@ -161,12 +166,12 @@ public class gestionDeAlumnos extends javax.swing.JInternalFrame {
     private javax.swing.JTextField TF_documento;
     private javax.swing.JTextField TF_nombre;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JButton jbSalirGA;
     // End of variables declaration//GEN-END:variables
 }

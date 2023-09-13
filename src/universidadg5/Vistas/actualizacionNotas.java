@@ -57,6 +57,11 @@ public class actualizacionNotas extends javax.swing.JInternalFrame {
         jbGuardarNotas.setText("GUARDAR");
 
         jbSalirDeNotas.setText("SALIR");
+        jbSalirDeNotas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbSalirDeNotasActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -103,6 +108,11 @@ public class actualizacionNotas extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jbSalirDeNotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirDeNotasActionPerformed
+        // ACCION DE SALIR DE VENTANA
+        System.exit(0);
+    }//GEN-LAST:event_jbSalirDeNotasActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -62,6 +62,11 @@ public class inscripciones extends javax.swing.JInternalFrame {
         jbAnular.setText("ANULAR INSCRIPCION");
 
         jbSalirDeInscripcion.setText("SALIR");
+        jbSalirDeInscripcion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbSalirDeInscripcionActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -119,6 +124,11 @@ public class inscripciones extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jbSalirDeInscripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirDeInscripcionActionPerformed
+        // BOTON DE SALIR
+        System.exit(0);
+    }//GEN-LAST:event_jbSalirDeInscripcionActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
