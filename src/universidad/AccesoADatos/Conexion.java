@@ -1,5 +1,5 @@
 
-package universidadg5.AccesoADatos;
+package universidad.AccesoADatos;
 
 import java.sql.*;
 import javax.swing.JOptionPane;

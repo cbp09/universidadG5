@@ -1,4 +1,4 @@
-package universidadg5.AccesoADatos;
+package universidad.AccesoADatos;
 
 import java.sql.Connection;
 import java.sql.Date;

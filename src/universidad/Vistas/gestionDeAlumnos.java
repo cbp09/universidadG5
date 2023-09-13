@@ -1,20 +1,19 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
- */
-package universidadg5.Vistas;
 
-/**
- *
- * @author luuci
- */
+package universidad.Vistas;
+
+import java.util.Date;
+import universidad.AccesoADatos.AlumnoData;
+import universidad.Entidades.*;
+import java.time.LocalDate;
+import java.time.ZoneId;
+
 public class gestionDeAlumnos extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form gestionDeAlumnos
-     */
+    AlumnoData alumno = new AlumnoData();
+    
     public gestionDeAlumnos() {
         initComponents();
+        
     }
 
     /**
@@ -39,6 +38,7 @@ public class gestionDeAlumnos extends javax.swing.JInternalFrame {
         JB_guardar = new javax.swing.JButton();
         jbSalirGA = new javax.swing.JButton();
         RB_activo = new javax.swing.JRadioButton();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
 
         setClosable(true);
 
@@ -55,6 +55,11 @@ public class gestionDeAlumnos extends javax.swing.JInternalFrame {
         jLabel6.setText("Fecha de nacimiento");
 
         JB_buscar.setText("Buscar");
+        JB_buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JB_buscarActionPerformed(evt);
+            }
+        });
 
         jbNuevo1.setText("Nuevo");
         jbNuevo1.addActionListener(new java.awt.event.ActionListener() {
@@ -114,7 +119,8 @@ public class gestionDeAlumnos extends javax.swing.JInternalFrame {
                                             .addComponent(JB_buscar)
                                             .addComponent(jbSalirGA)))
                                     .addComponent(RB_activo)
-                                    .addComponent(TF_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(TF_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(221, 221, 221)
                         .addComponent(jLabel1)))
@@ -142,8 +148,10 @@ public class gestionDeAlumnos extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(RB_activo))
-                .addGap(27, 27, 27)
-                .addComponent(jLabel6)
+                .addGap(21, 21, 21)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel6)
+                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbNuevo1)
@@ -168,6 +176,25 @@ public class gestionDeAlumnos extends javax.swing.JInternalFrame {
         TF_nombre.setText("");
     }//GEN-LAST:event_jbNuevo1ActionPerformed
 
+    private void JB_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_buscarActionPerformed
+        // TODO add your handling code here:
+        
+        int DNI = Integer.parseInt(TF_documento.getText());
+        
+        Alumno alum =  alumno.buscarAlumnoPorDNI(DNI);
+        
+        TF_apellido.setText(alum.getApellido());
+        TF_nombre.setText(alum.getNombre());
+        RB_activo.setSelected(alum.isActivo());
+        
+        LocalDate localDate = alum.getfNac(); 
+        
+        Date date = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+
+        jDateChooser1.setDate(date);
+        
+    }//GEN-LAST:event_JB_buscarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JB_buscar;
@@ -177,6 +204,7 @@ public class gestionDeAlumnos extends javax.swing.JInternalFrame {
     private javax.swing.JTextField TF_apellido;
     private javax.swing.JTextField TF_documento;
     private javax.swing.JTextField TF_nombre;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

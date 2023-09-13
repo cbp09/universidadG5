@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package universidadg5.Vistas;
+package universidad.Vistas;
 
 import javax.swing.JOptionPane;
 
@@ -118,13 +118,8 @@ public class Menu_principal extends javax.swing.JFrame {
 
         jmSalir.setText("Salir");
         jmSalir.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jmSalirMouseExited(evt);
-            }
-        });
-        jmSalir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmSalirActionPerformed(evt);
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jmSalirMouseClicked(evt);
             }
         });
         jMenuBar1.add(jmSalir);
@@ -218,15 +213,11 @@ public class Menu_principal extends javax.swing.JFrame {
         escritorio.moveToFront(GUI);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
-    private void jmSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmSalirActionPerformed
-        // MENU SALIR(NO FUNCIONA)
-        //System.exit(0);
-    }//GEN-LAST:event_jmSalirActionPerformed
-
-    private void jmSalirMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jmSalirMouseExited
-        // Boton de salir
+    private void jmSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jmSalirMouseClicked
+        // TODO add your handling code here:
+        System.out.println("ESTO SALE");
         System.exit(0);
-    }//GEN-LAST:event_jmSalirMouseExited
+    }//GEN-LAST:event_jmSalirMouseClicked
 
     /**
      * @param args the command line arguments

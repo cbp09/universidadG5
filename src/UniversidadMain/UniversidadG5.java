@@ -5,8 +5,7 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.util.ArrayList;
 import universidad.Entidades.*;
-import universidadg5.AccesoADatos.*;
-import universidadg5.AccesoADatos.Conexion;
+import universidad.AccesoADatos.Conexion;
 
 public class UniversidadG5 {
 
