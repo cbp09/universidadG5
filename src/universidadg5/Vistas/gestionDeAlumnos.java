@@ -34,7 +34,7 @@ public class gestionDeAlumnos extends javax.swing.JInternalFrame {
         TF_apellido = new javax.swing.JTextField();
         TF_nombre = new javax.swing.JTextField();
         JB_buscar = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jbNuevo1 = new javax.swing.JButton();
         JB_eliminar = new javax.swing.JButton();
         JB_guardar = new javax.swing.JButton();
         jbSalirGA = new javax.swing.JButton();
@@ -56,7 +56,12 @@ public class gestionDeAlumnos extends javax.swing.JInternalFrame {
 
         JB_buscar.setText("Buscar");
 
-        jButton2.setText("Nuevo");
+        jbNuevo1.setText("Nuevo");
+        jbNuevo1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbNuevo1ActionPerformed(evt);
+            }
+        });
 
         JB_eliminar.setText("Eliminar");
 
@@ -90,7 +95,7 @@ public class gestionDeAlumnos extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(47, 47, 47)
-                        .addComponent(jButton2)
+                        .addComponent(jbNuevo1)
                         .addGap(45, 45, 45)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(JB_eliminar)
@@ -141,7 +146,7 @@ public class gestionDeAlumnos extends javax.swing.JInternalFrame {
                 .addComponent(jLabel6)
                 .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
+                    .addComponent(jbNuevo1)
                     .addComponent(JB_eliminar)
                     .addComponent(JB_guardar)
                     .addComponent(jbSalirGA))
@@ -156,6 +161,13 @@ public class gestionDeAlumnos extends javax.swing.JInternalFrame {
         System.exit(0);
     }//GEN-LAST:event_jbSalirGAActionPerformed
 
+    private void jbNuevo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNuevo1ActionPerformed
+        // JTBOTTON NUEVO1
+        TF_apellido.setText("");
+        TF_documento.setText("");
+        TF_nombre.setText("");
+    }//GEN-LAST:event_jbNuevo1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JB_buscar;
@@ -165,13 +177,13 @@ public class gestionDeAlumnos extends javax.swing.JInternalFrame {
     private javax.swing.JTextField TF_apellido;
     private javax.swing.JTextField TF_documento;
     private javax.swing.JTextField TF_nombre;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JButton jbNuevo1;
     private javax.swing.JButton jbSalirGA;
     // End of variables declaration//GEN-END:variables
 }

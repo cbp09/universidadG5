@@ -52,6 +52,11 @@ public class gestionMateria extends javax.swing.JInternalFrame {
         jLabel5.setText("Estado:");
 
         jbNuevo.setText("NUEVO");
+        jbNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbNuevoActionPerformed(evt);
+            }
+        });
 
         jbEliminarMateria.setText("ELIMINAR");
 
@@ -154,6 +159,13 @@ public class gestionMateria extends javax.swing.JInternalFrame {
         // BOTON DE SALIR
         System.exit(0);
     }//GEN-LAST:event_jbSalirDeMateriasActionPerformed
+
+    private void jbNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNuevoActionPerformed
+        // BOTON "NUEVO"
+        jtfAño.setText("");
+        jtfNombreMateria.setText("");
+        jtfCodigo.setText("");
+    }//GEN-LAST:event_jbNuevoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
