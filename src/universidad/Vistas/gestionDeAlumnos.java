@@ -35,7 +35,7 @@ public class gestionDeAlumnos extends javax.swing.JInternalFrame {
         JB_buscar = new javax.swing.JButton();
         jbNuevo1 = new javax.swing.JButton();
         JB_eliminar = new javax.swing.JButton();
-        JB_guardar = new javax.swing.JButton();
+        JB_modificar = new javax.swing.JButton();
         jbSalirGA = new javax.swing.JButton();
         RB_activo = new javax.swing.JRadioButton();
         DC_fechaNacimiento = new com.toedter.calendar.JDateChooser();
@@ -77,10 +77,10 @@ public class gestionDeAlumnos extends javax.swing.JInternalFrame {
             }
         });
 
-        JB_guardar.setText("Modificar");
-        JB_guardar.addActionListener(new java.awt.event.ActionListener() {
+        JB_modificar.setText("Modificar");
+        JB_modificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JB_guardarActionPerformed(evt);
+                JB_modificarActionPerformed(evt);
             }
         });
 
@@ -130,7 +130,7 @@ public class gestionDeAlumnos extends javax.swing.JInternalFrame {
                                     .addComponent(JB_eliminar)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(130, 130, 130)
-                                        .addComponent(JB_guardar)
+                                        .addComponent(JB_modificar)
                                         .addGap(53, 53, 53)
                                         .addComponent(jbSalirGA))))
                             .addComponent(jLabel6)
@@ -182,7 +182,7 @@ public class gestionDeAlumnos extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbNuevo1)
                     .addComponent(JB_eliminar)
-                    .addComponent(JB_guardar)
+                    .addComponent(JB_modificar)
                     .addComponent(jbSalirGA))
                 .addGap(24, 24, 24))
         );
@@ -202,16 +202,20 @@ public class gestionDeAlumnos extends javax.swing.JInternalFrame {
             String apellido = TF_apellido.getText();
             String nombre = TF_nombre.getText();
             boolean estado = RB_activo.isSelected();
+            
             LocalDate fechaN = DC_fechaNacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            
             if (apellido.equals("") || nombre.equals("")) {
                 JOptionPane.showMessageDialog(null, "Deben estar todos los campos completos");
             } else {
                 Alumno alumno = new Alumno(DNI, nombre, apellido, fechaN, estado);
                 alumnoData.guardarAlumno(alumno);
             }
+            
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(null, "Deben estar todos los campos completos");
         }
+        
         limpiar();
     }//GEN-LAST:event_jbNuevo1ActionPerformed
 
@@ -221,9 +225,9 @@ public class gestionDeAlumnos extends javax.swing.JInternalFrame {
             int DNI = Integer.parseInt(TF_documento.getText());
 
             Alumno alum = alumnoData.buscarAlumnoPorDNI(DNI);
-            
+
             if (alum != null) {
-                TF_id.setText(alum.getIdAlumno()+"");
+                TF_id.setText(alum.getIdAlumno() + "");
                 TF_apellido.setText(alum.getApellido());
                 TF_nombre.setText(alum.getNombre());
                 RB_activo.setSelected(alum.isActivo());
@@ -240,29 +244,29 @@ public class gestionDeAlumnos extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_JB_buscarActionPerformed
 
-    private void JB_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_guardarActionPerformed
+    private void JB_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_modificarActionPerformed
         //MODIFICAR
-        try{
-        Alumno alu = new Alumno();
-        if(TF_id.getText().equals("")){
-            JOptionPane.showMessageDialog(null, "Debe buscar primero al Alumno con el DNI.");
-        //JB_buscarActionPerformed(evt);
-        }else{
-        alu.setIdAlumno(Integer.parseInt(TF_id.getText()));
-        alu.setDni(Integer.parseInt(TF_documento.getText()));
-        alu.setApellido(TF_apellido.getText());
-        alu.setNombre(TF_nombre.getText());
-        alu.setActivo(RB_activo.isSelected());
-        alu.setfNac(DC_fechaNacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
-        alumnoData.modificarAlumno(alu);
-        }
+        try {
+            Alumno alu = new Alumno();
+            if (TF_id.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Debe buscar primero al Alumno con el DNI.");
+                //JB_buscarActionPerformed(evt);
+            } else {
+                alu.setIdAlumno(Integer.parseInt(TF_id.getText()));
+                alu.setDni(Integer.parseInt(TF_documento.getText()));
+                alu.setApellido(TF_apellido.getText());
+                alu.setNombre(TF_nombre.getText());
+                alu.setActivo(RB_activo.isSelected());
+                alu.setfNac(DC_fechaNacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+                alumnoData.modificarAlumno(alu);
+            }
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(null, "Debe ingresar un dni o dni inválido");
-        }catch(NullPointerException ex){
+        } catch (NullPointerException ex) {
             JOptionPane.showMessageDialog(null, "Debe ingresar una fecha de nacimiento.");
         }
         limpiar();
-    }//GEN-LAST:event_JB_guardarActionPerformed
+    }//GEN-LAST:event_JB_modificarActionPerformed
 
     private void JB_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_eliminarActionPerformed
         //eliminar alumno
@@ -283,7 +287,7 @@ public class gestionDeAlumnos extends javax.swing.JInternalFrame {
     private com.toedter.calendar.JDateChooser DC_fechaNacimiento;
     private javax.swing.JButton JB_buscar;
     private javax.swing.JButton JB_eliminar;
-    private javax.swing.JButton JB_guardar;
+    private javax.swing.JButton JB_modificar;
     private javax.swing.JRadioButton RB_activo;
     private javax.swing.JTextField TF_apellido;
     private javax.swing.JTextField TF_documento;
@@ -299,12 +303,12 @@ public class gestionDeAlumnos extends javax.swing.JInternalFrame {
     private javax.swing.JButton jbNuevo1;
     private javax.swing.JButton jbSalirGA;
     // End of variables declaration//GEN-END:variables
-private void limpiar(){
-    RB_activo.setSelected(false);
-    TF_apellido.setText("");
-    TF_documento.setText("");
-    TF_id.setText("");
-    TF_nombre.setText("");
-}
+private void limpiar() {
+        RB_activo.setSelected(false);
+        TF_apellido.setText("");
+        TF_documento.setText("");
+        TF_id.setText("");
+        TF_nombre.setText("");
+    }
 
 }
