@@ -41,9 +41,9 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Group type="102" alignment="0" attributes="0">
-                                              <Component id="jbNuevo" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jbGuardar" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Component id="jbEliminarMateria" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jbEliminar" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <Group type="102" alignment="0" attributes="0">
                                               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
@@ -53,8 +53,8 @@
                                       </Group>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jbBuscarCodigo" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jbGuardarYModificar" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jbBuscar" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jbModificar" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
@@ -71,7 +71,7 @@
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace min="0" pref="79" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="92" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -90,7 +90,7 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jbBuscarCodigo" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jbBuscar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jtfCodigo" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
@@ -115,9 +115,9 @@
               </Group>
               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jbNuevo" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jbEliminarMateria" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jbGuardarYModificar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jbGuardar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jbEliminar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jbModificar" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
               <Component id="jbSalirDeMaterias" min="-2" max="-2" attributes="0"/>
@@ -152,22 +152,22 @@
         <Property name="text" type="java.lang.String" value="Estado:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jbNuevo">
+    <Component class="javax.swing.JButton" name="jbGuardar">
       <Properties>
-        <Property name="text" type="java.lang.String" value="NUEVO"/>
+        <Property name="text" type="java.lang.String" value="Guardar"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbNuevoActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbGuardarActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jbEliminarMateria">
+    <Component class="javax.swing.JButton" name="jbEliminar">
       <Properties>
-        <Property name="text" type="java.lang.String" value="ELIMINAR"/>
+        <Property name="text" type="java.lang.String" value="Eliminar"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jbGuardarYModificar">
+    <Component class="javax.swing.JButton" name="jbModificar">
       <Properties>
-        <Property name="text" type="java.lang.String" value="GUARDAR"/>
+        <Property name="text" type="java.lang.String" value="Modificar"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jbSalirDeMaterias">
@@ -178,12 +178,12 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbSalirDeMateriasActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jbBuscarCodigo">
+    <Component class="javax.swing.JButton" name="jbBuscar">
       <Properties>
-        <Property name="text" type="java.lang.String" value="BUSCAR"/>
+        <Property name="text" type="java.lang.String" value="Buscar"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbBuscarCodigoActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbBuscarActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jtfCodigo">

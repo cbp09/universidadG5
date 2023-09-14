@@ -21,11 +21,11 @@ public class gestionMateria extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jbNuevo = new javax.swing.JButton();
-        jbEliminarMateria = new javax.swing.JButton();
-        jbGuardarYModificar = new javax.swing.JButton();
+        jbGuardar = new javax.swing.JButton();
+        jbEliminar = new javax.swing.JButton();
+        jbModificar = new javax.swing.JButton();
         jbSalirDeMaterias = new javax.swing.JButton();
-        jbBuscarCodigo = new javax.swing.JButton();
+        jbBuscar = new javax.swing.JButton();
         jtfCodigo = new javax.swing.JTextField();
         jtfNombreMateria = new javax.swing.JTextField();
         jtfAño = new javax.swing.JTextField();
@@ -43,16 +43,16 @@ public class gestionMateria extends javax.swing.JInternalFrame {
 
         jLabel5.setText("Estado:");
 
-        jbNuevo.setText("NUEVO");
-        jbNuevo.addActionListener(new java.awt.event.ActionListener() {
+        jbGuardar.setText("Guardar");
+        jbGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbNuevoActionPerformed(evt);
+                jbGuardarActionPerformed(evt);
             }
         });
 
-        jbEliminarMateria.setText("ELIMINAR");
+        jbEliminar.setText("Eliminar");
 
-        jbGuardarYModificar.setText("GUARDAR");
+        jbModificar.setText("Modificar");
 
         jbSalirDeMaterias.setText("SALIR");
         jbSalirDeMaterias.addActionListener(new java.awt.event.ActionListener() {
@@ -61,10 +61,10 @@ public class gestionMateria extends javax.swing.JInternalFrame {
             }
         });
 
-        jbBuscarCodigo.setText("BUSCAR");
-        jbBuscarCodigo.addActionListener(new java.awt.event.ActionListener() {
+        jbBuscar.setText("Buscar");
+        jbBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbBuscarCodigoActionPerformed(evt);
+                jbBuscarActionPerformed(evt);
             }
         });
 
@@ -89,17 +89,17 @@ public class gestionMateria extends javax.swing.JInternalFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jbNuevo)
+                                                .addComponent(jbGuardar)
                                                 .addGap(18, 18, 18)
-                                                .addComponent(jbEliminarMateria))
+                                                .addComponent(jbEliminar))
                                             .addGroup(layout.createSequentialGroup()
                                                 .addComponent(jLabel2)
                                                 .addGap(18, 18, 18)
                                                 .addComponent(jtfCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                         .addGap(18, 18, 18)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jbBuscarCodigo)
-                                            .addComponent(jbGuardarYModificar)))
+                                            .addComponent(jbBuscar)
+                                            .addComponent(jbModificar)))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel3)
@@ -108,7 +108,7 @@ public class gestionMateria extends javax.swing.JInternalFrame {
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jtfNombreMateria, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jtfAño, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                        .addGap(0, 79, Short.MAX_VALUE))
+                        .addGap(0, 92, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jbSalirDeMaterias)))
@@ -122,7 +122,7 @@ public class gestionMateria extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jbBuscarCodigo)
+                    .addComponent(jbBuscar)
                     .addComponent(jtfCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -141,9 +141,9 @@ public class gestionMateria extends javax.swing.JInternalFrame {
                         .addComponent(jrbEstado)))
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbNuevo)
-                    .addComponent(jbEliminarMateria)
-                    .addComponent(jbGuardarYModificar))
+                    .addComponent(jbGuardar)
+                    .addComponent(jbEliminar)
+                    .addComponent(jbModificar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jbSalirDeMaterias)
                 .addContainerGap())
@@ -157,12 +157,32 @@ public class gestionMateria extends javax.swing.JInternalFrame {
         System.exit(0);
     }//GEN-LAST:event_jbSalirDeMateriasActionPerformed
 
-    private void jbNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNuevoActionPerformed
+    private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
         // BOTON "NUEVO"
         
-    }//GEN-LAST:event_jbNuevoActionPerformed
+        if (!jtfCodigo.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "El codigo tiene que estar vacio");
+        }else if (jtfNombreMateria.getText().equals("") || jtfAño.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "No puede tener campos vacios");
+        }else{
+            try {
+                Materia materia = new Materia();
 
-    private void jbBuscarCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarCodigoActionPerformed
+                materia.setNombre(jtfNombreMateria.getText());
+                materia.setAnioMateria(Integer.parseInt(jtfAño.getText()));
+                materia.setActivo(jrbEstado.isSelected());
+
+                materiaData.guardarMateria(materia); 
+                limpiar();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Ingrese un Año en formato de numero");
+            }
+        
+        }
+        
+    }//GEN-LAST:event_jbGuardarActionPerformed
+
+    private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
         //buscar materiaPor id
         try {
             int id = Integer.parseInt(jtfCodigo.getText());
@@ -178,7 +198,7 @@ public class gestionMateria extends javax.swing.JInternalFrame {
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(null, "Debe agregar un id válido");
         }
-    }//GEN-LAST:event_jbBuscarCodigoActionPerformed
+    }//GEN-LAST:event_jbBuscarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -187,14 +207,24 @@ public class gestionMateria extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JButton jbBuscarCodigo;
-    private javax.swing.JButton jbEliminarMateria;
-    private javax.swing.JButton jbGuardarYModificar;
-    private javax.swing.JButton jbNuevo;
+    private javax.swing.JButton jbBuscar;
+    private javax.swing.JButton jbEliminar;
+    private javax.swing.JButton jbGuardar;
+    private javax.swing.JButton jbModificar;
     private javax.swing.JButton jbSalirDeMaterias;
     private javax.swing.JRadioButton jrbEstado;
     private javax.swing.JTextField jtfAño;
     private javax.swing.JTextField jtfCodigo;
     private javax.swing.JTextField jtfNombreMateria;
     // End of variables declaration//GEN-END:variables
+
+    private void limpiar() {
+        // borra los datos de los textField
+        jrbEstado.setSelected(false);
+        jtfAño.setText("");
+        jtfCodigo.setText("");
+        jtfNombreMateria.setText("");        
+    }
+
+
 }
