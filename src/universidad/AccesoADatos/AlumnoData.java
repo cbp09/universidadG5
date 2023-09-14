@@ -50,7 +50,7 @@ public class AlumnoData {
 
     public void modificarAlumno(Alumno alumno) {
 
-        String sql = "UPDATE alumno SET dni=?, apellido=?,nombre=?,fechadn=? "
+        String sql = "UPDATE alumno SET dni=?, apellido=?,nombre=?,fechadn=?,estado=? "
                 + "WHERE idAlumno =?";
 
         try {
@@ -59,7 +59,8 @@ public class AlumnoData {
             ps.setString(2, alumno.getApellido());
             ps.setString(3, alumno.getNombre());
             ps.setDate(4, Date.valueOf(alumno.getfNac()));
-            ps.setInt(5, alumno.getIdAlumno());
+            ps.setInt(6, alumno.getIdAlumno());
+            ps.setBoolean(5,alumno.isActivo());
 
             int exito = ps.executeUpdate();
             if (exito == 1) {
@@ -93,7 +94,7 @@ public class AlumnoData {
     }
 
     public Alumno buscarAlumnoPorId(int id) {
-        String sql = "SELECT dni,apellido,nombre,fechadn FROM alumno WHERE idAlumno = ? AND estado = 1";
+        String sql = "SELECT dni,apellido,nombre,fechadn,estado FROM alumno WHERE idAlumno = ? ";
         Alumno alumno = null;
 
         try {
@@ -107,7 +108,7 @@ public class AlumnoData {
                 alumno.setApellido(rs.getString("apellido"));
                 alumno.setNombre(rs.getString("nombre"));
                 alumno.setfNac(rs.getDate("fechadn").toLocalDate());
-                alumno.setActivo(true);
+                alumno.setActivo(rs.getBoolean("estado"));
             }else{
                 JOptionPane.showMessageDialog(null, "No existe un alumno con id " + id);
             }
@@ -120,7 +121,7 @@ public class AlumnoData {
     }
 
     public Alumno buscarAlumnoPorDNI(int dni) {
-        String sql = "SELECT idAlumno,apellido,nombre,fechadn FROM alumno WHERE dni = ? AND estado = 1";
+        String sql = "SELECT idAlumno,apellido,nombre,fechadn,estado FROM alumno WHERE dni = ? ";
         Alumno alumno = null;
 
         try {
@@ -134,7 +135,7 @@ public class AlumnoData {
                 alumno.setApellido(rs.getString("apellido"));
                 alumno.setNombre(rs.getString("nombre"));
                 alumno.setfNac(rs.getDate("fechadn").toLocalDate());
-                alumno.setActivo(true);
+                alumno.setActivo(rs.getBoolean("estado"));
             }else{
                 JOptionPane.showMessageDialog(null, "No existe un alumno con dni " + dni);
             }
