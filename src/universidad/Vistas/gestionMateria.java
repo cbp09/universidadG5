@@ -7,6 +7,7 @@ import universidad.Entidades.Materia;
 public class gestionMateria extends javax.swing.JInternalFrame {
 
     MateriaData materiaData = new MateriaData();
+
     public gestionMateria() {
         initComponents();
     }
@@ -158,22 +159,23 @@ public class gestionMateria extends javax.swing.JInternalFrame {
 
     private void jbNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNuevoActionPerformed
         // BOTON "NUEVO"
-        jtfAño.setText("");
-        jtfNombreMateria.setText("");
-        jtfCodigo.setText("");
+        
     }//GEN-LAST:event_jbNuevoActionPerformed
 
     private void jbBuscarCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarCodigoActionPerformed
         //buscar materiaPor id
-        try{
-        int id = Integer.parseInt(jtfCodigo.getText());
-        Materia materia = materiaData.buscarMateriaPorId(id);
-        if(materia != null){
-            jtfNombreMateria.setText(materia.getNombre());
-            jtfAño.setText(String.valueOf(materia.getAnioMateria()));
-            jrbEstado.setSelected(materia.isActivo());
-        }
-        }catch(NumberFormatException ex){
+        try {
+            int id = Integer.parseInt(jtfCodigo.getText());
+            
+            Materia materia = materiaData.buscarMateriaPorId(id);
+            
+            if (materia != null) {
+                jtfNombreMateria.setText(materia.getNombre());
+                jtfAño.setText(String.valueOf(materia.getAnioMateria()));
+                jrbEstado.setSelected(materia.isActivo());
+            }
+            
+        } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(null, "Debe agregar un id válido");
         }
     }//GEN-LAST:event_jbBuscarCodigoActionPerformed
