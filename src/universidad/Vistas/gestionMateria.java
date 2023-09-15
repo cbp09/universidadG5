@@ -53,6 +53,11 @@ public class gestionMateria extends javax.swing.JInternalFrame {
         jbEliminar.setText("Eliminar");
 
         jbModificar.setText("Modificar");
+        jbModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbModificarActionPerformed(evt);
+            }
+        });
 
         jbSalirDeMaterias.setText("SALIR");
         jbSalirDeMaterias.addActionListener(new java.awt.event.ActionListener() {
@@ -199,6 +204,28 @@ public class gestionMateria extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Debe agregar un id válido");
         }
     }//GEN-LAST:event_jbBuscarActionPerformed
+
+    private void jbModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbModificarActionPerformed
+        // MODIFICAR
+        try {
+            Materia mat = new Materia();
+
+            if (jtfCodigo.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Debe ingresar el ID de la materia.");
+            } else {
+                mat.setIdMateria(Integer.parseInt(jtfCodigo.getText()));
+                mat.setNombre(jtfNombreMateria.getText());
+                mat.setAnioMateria(Integer.parseInt(jtfAño.getText()));
+            }
+
+            limpiar();
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "Debe ingresar un dni o dni inválido");
+        } catch (NullPointerException ex) {
+            JOptionPane.showMessageDialog(null, "Debe ingresar una fecha de nacimiento.");
+        }
+
+    }//GEN-LAST:event_jbModificarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
