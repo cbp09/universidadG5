@@ -28,7 +28,7 @@ public class gestionMateria extends javax.swing.JInternalFrame {
         jbBuscar = new javax.swing.JButton();
         jtfCodigo = new javax.swing.JTextField();
         jtfNombreMateria = new javax.swing.JTextField();
-        jtfAño = new javax.swing.JTextField();
+        jtfAnio = new javax.swing.JTextField();
         jrbEstado = new javax.swing.JRadioButton();
 
         setClosable(true);
@@ -51,6 +51,11 @@ public class gestionMateria extends javax.swing.JInternalFrame {
         });
 
         jbEliminar.setText("Eliminar");
+        jbEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbEliminarActionPerformed(evt);
+            }
+        });
 
         jbModificar.setText("Modificar");
         jbModificar.addActionListener(new java.awt.event.ActionListener() {
@@ -112,7 +117,7 @@ public class gestionMateria extends javax.swing.JInternalFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jtfNombreMateria, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jtfAño, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                            .addComponent(jtfAnio, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                         .addGap(0, 92, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -136,7 +141,7 @@ public class gestionMateria extends javax.swing.JInternalFrame {
                 .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jtfAño, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtfAnio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(17, 17, 17)
@@ -163,69 +168,94 @@ public class gestionMateria extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbSalirDeMateriasActionPerformed
 
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
-        // BOTON "NUEVO"
-        
-        if (!jtfCodigo.getText().equals("")){
+        //GUARDAR
+
+        if (!jtfCodigo.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "El codigo tiene que estar vacio");
-        }else if (jtfNombreMateria.getText().equals("") || jtfAño.getText().equals("")){
+        } else if (jtfNombreMateria.getText().equals("") || jtfAnio.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "No puede tener campos vacios");
-        }else{
+        } else {
             try {
                 Materia materia = new Materia();
 
                 materia.setNombre(jtfNombreMateria.getText());
-                materia.setAnioMateria(Integer.parseInt(jtfAño.getText()));
+                materia.setAnioMateria(Integer.parseInt(jtfAnio.getText()));
                 materia.setActivo(jrbEstado.isSelected());
 
-                materiaData.guardarMateria(materia); 
+                materiaData.guardarMateria(materia);
                 limpiar();
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Ingrese un Año en formato de numero");
             }
-        
         }
-        
     }//GEN-LAST:event_jbGuardarActionPerformed
 
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
-        //buscar materiaPor id
+        //BUSCAR
         try {
             int id = Integer.parseInt(jtfCodigo.getText());
-            
+
             Materia materia = materiaData.buscarMateriaPorId(id);
-            
+
             if (materia != null) {
                 jtfNombreMateria.setText(materia.getNombre());
-                jtfAño.setText(String.valueOf(materia.getAnioMateria()));
+                jtfAnio.setText(String.valueOf(materia.getAnioMateria()));
                 jrbEstado.setSelected(materia.isActivo());
             }
-            
+
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(null, "Debe agregar un id válido");
+            jtfCodigo.requestFocusInWindow();
         }
     }//GEN-LAST:event_jbBuscarActionPerformed
 
     private void jbModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbModificarActionPerformed
         // MODIFICAR
-        try {
-            Materia mat = new Materia();
+        Materia mat = new Materia();
 
-            if (jtfCodigo.getText().equals("")) {
-                JOptionPane.showMessageDialog(null, "Debe ingresar el ID de la materia.");
-            } else {
-                mat.setIdMateria(Integer.parseInt(jtfCodigo.getText()));
-                mat.setNombre(jtfNombreMateria.getText());
-                mat.setAnioMateria(Integer.parseInt(jtfAño.getText()));
-            }
-
+        if (!isNumeric(jtfCodigo.getText())) {
+            JOptionPane.showMessageDialog(null, "Debe ingresar el ID de la materia.");
+            jtfCodigo.requestFocusInWindow();
+        } else if (!isNumeric(jtfAnio.getText())) {
+            JOptionPane.showMessageDialog(null, "Debe ingresar un año válido.");
+            jtfAnio.requestFocusInWindow();
+        } else if (jtfNombreMateria.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Debe ingresar un nombre");
+            jtfNombreMateria.requestFocusInWindow();
+        } else {
+            mat.setIdMateria(Integer.parseInt(jtfCodigo.getText()));
+            mat.setNombre(jtfNombreMateria.getText());
+            mat.setAnioMateria(Integer.parseInt(jtfAnio.getText()));
+            mat.setActivo(jrbEstado.isSelected());
+            materiaData.modificarMateria(mat);
             limpiar();
-        } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(null, "Debe ingresar un dni o dni inválido");
-        } catch (NullPointerException ex) {
-            JOptionPane.showMessageDialog(null, "Debe ingresar una fecha de nacimiento.");
         }
-
     }//GEN-LAST:event_jbModificarActionPerformed
+
+    private void jbEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarActionPerformed
+        //Eliminar
+        if (!isNumeric(jtfCodigo.getText())) {
+            JOptionPane.showMessageDialog(null, "Debe ingresar el ID de la materia.");
+            jtfCodigo.requestFocusInWindow();
+        } else {
+            int codigo = Integer.parseInt(jtfCodigo.getText());
+            Materia materia = materiaData.buscarMateriaPorId(codigo);
+            if (materia != null) {
+                materiaData.eliminarMateria(materia.getIdMateria());
+                JOptionPane.showMessageDialog(null, "Materia eliminada correctamente");
+            }
+            limpiar();
+        }
+    }//GEN-LAST:event_jbEliminarActionPerformed
+
+    private static boolean isNumeric(String cadena) {
+        try {
+            Integer.parseInt(cadena);
+            return true;
+        } catch (NumberFormatException ex) {
+            return false;
+        }
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -240,7 +270,7 @@ public class gestionMateria extends javax.swing.JInternalFrame {
     private javax.swing.JButton jbModificar;
     private javax.swing.JButton jbSalirDeMaterias;
     private javax.swing.JRadioButton jrbEstado;
-    private javax.swing.JTextField jtfAño;
+    private javax.swing.JTextField jtfAnio;
     private javax.swing.JTextField jtfCodigo;
     private javax.swing.JTextField jtfNombreMateria;
     // End of variables declaration//GEN-END:variables
@@ -248,10 +278,9 @@ public class gestionMateria extends javax.swing.JInternalFrame {
     private void limpiar() {
         // borra los datos de los textField
         jrbEstado.setSelected(false);
-        jtfAño.setText("");
+        jtfAnio.setText("");
         jtfCodigo.setText("");
-        jtfNombreMateria.setText("");        
+        jtfNombreMateria.setText("");
     }
-
 
 }

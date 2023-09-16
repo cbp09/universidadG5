@@ -81,11 +81,6 @@ public class gestionDeAlumnos extends javax.swing.JInternalFrame {
         });
 
         RB_activo.setText("Seleccionado esta Activo");
-        RB_activo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RB_activoActionPerformed(evt);
-            }
-        });
 
         jLabel7.setText("ID:");
 
@@ -260,24 +255,18 @@ public class gestionDeAlumnos extends javax.swing.JInternalFrame {
     private void JB_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_eliminarActionPerformed
         //eliminar alumno
         try {
-
             int documento = Integer.parseInt(TF_documento.getText());
             Alumno alumno = alumnoData.buscarAlumnoPorDNI(documento);
 
             if (alumno != null) {
                 alumnoData.eliminarAlumno(alumno.getIdAlumno());
             }
-
             limpiar();
 
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Debe ingresar un dni válido");
         }
     }//GEN-LAST:event_JB_eliminarActionPerformed
-
-    private void RB_activoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RB_activoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_RB_activoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -307,8 +296,7 @@ public class gestionDeAlumnos extends javax.swing.JInternalFrame {
         TF_documento.setText("");
         TF_id.setText("");
         TF_nombre.setText("");
-        
-    }
 
+    }
 
 }

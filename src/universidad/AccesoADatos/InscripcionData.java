@@ -100,8 +100,8 @@ public class InscripcionData {
     }
 
     public List<Materia> obstenerMateriasCursadas(int id) {
-        String sql = "SELECT inscripcion.idMat, nomMat, año FROM inscripción JOIN materias"
-                + "ON(inscripción.idMat = materias.idMateria) WHERE inscripcion.idAlumno = ?";
+        String sql = "SELECT inscripcion.idMat, nomMat, año FROM inscripcion JOIN materias"
+                + " ON(inscripcion.idMat = materias.idMateria) WHERE inscripcion.idAlumno = ?";
         ArrayList<Materia> materias = new ArrayList<Materia>();
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -160,15 +160,15 @@ public class InscripcionData {
         }
     }
 
-    public List<Alumno> obtenerAlumnosXMateria(int idMateria){
-        String sql = "SELECT alumno.* FROM alumno JOIN inscripcion ON(alumno.idAlumno = inscripcion.idAlumno) WHERE inscripcion.idMateria = "+idMateria;
+    public List<Alumno> obtenerAlumnosXMateria(int idMateria) {
+        String sql = "SELECT alumno.* FROM alumno JOIN inscripcion ON(alumno.idAlumno = inscripcion.idAlumno) WHERE inscripcion.idMateria = " + idMateria;
         ArrayList<Alumno> alumnos = new ArrayList<Alumno>();
-        
+
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             Alumno alumno;
-            while(rs.next()){
+            while (rs.next()) {
                 alumno = new Alumno();
                 alumno.setIdAlumno(rs.getInt("idAlumno"));
                 alumno.setDni(rs.getInt("dni"));
@@ -176,7 +176,7 @@ public class InscripcionData {
                 alumno.setNombre(rs.getString("nombre"));
                 alumno.setfNac(rs.getDate("fechadn").toLocalDate());
                 alumno.setActivo(true);
-                
+
                 alumnos.add(alumno);
             }
             ps.close();
@@ -185,25 +185,25 @@ public class InscripcionData {
         }
         return alumnos;
     }
-    
-    public List<Materia> optenerMateriasNOCurasdas(int idAlumno){
+
+    public List<Materia> optenerMateriasNOCurasdas(int idAlumno) {
         // Hay que testear esto 12/09
-        String sql = "SELECT * " +
-                    "FROM materias as m" +
-                    "WHERE m.idMateria NOT IN (SELECT idMateria FROM inscripcion WHERE idAlumno = "+idAlumno+");";
-        
+        String sql = "SELECT * \n"
+                + "from materias as m\n"
+                + "WHERE m.idMateria not in (SELECT idMat FROM inscripcion WHERE idAlumno = ?)";
+
         ArrayList<Materia> materias = new ArrayList<Materia>();
-        
+
         try {
             PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, idAlumno); // tuve que setear el id acá porque si no me daba error 
             ResultSet rs = ps.executeQuery();
             Materia materia;
             while (rs.next()) {
                 materia = new Materia();
-                materia.setIdMateria(rs.getInt("inscripcion.idMat"));
+                materia.setIdMateria(rs.getInt("idMateria")); // esto estaba mal, entaban trayendo id de inscripcion.idMat
                 materia.setNombre(rs.getString("nomMat"));
                 materia.setAnioMateria(rs.getInt("año"));
-
                 materias.add(materia);
             }
             ps.close();
@@ -213,6 +213,4 @@ public class InscripcionData {
         }
         return materias;
     }
-    
-
 }

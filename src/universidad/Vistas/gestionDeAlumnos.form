@@ -206,9 +206,6 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Seleccionado esta Activo"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="RB_activoActionPerformed"/>
-      </Events>
     </Component>
     <Component class="com.toedter.calendar.JDateChooser" name="DC_fechaNacimiento">
     </Component>

@@ -4,8 +4,10 @@ import java.sql.Connection;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.ArrayList;
+import java.util.List;
 import universidad.Entidades.*;
 import universidad.AccesoADatos.Conexion;
+import universidad.AccesoADatos.InscripcionData;
 
 public class UniversidadG5 {
 
@@ -49,6 +51,15 @@ public class UniversidadG5 {
         for (Materia materia : materias) {
             System.out.println(materia); 
         }*/ // COMENTE ESTO**
+        
+        
+//        InscripcionData inscripcion = new InscripcionData();
+//        List<Materia> materias = inscripcion.optenerMateriasNOCurasdas(10);
+//        for (Materia materia : materias) {
+//            System.out.println(materia.getIdMateria());
+//        // era apra probar lo de cargar materias no cursadas porque no andaba xd
+//        }
+                
       
     }
     
