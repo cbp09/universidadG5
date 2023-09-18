@@ -7,7 +7,10 @@ public class Inscripcion {
    private double nota;
    private boolean estado;
     
-    public Inscripcion(){}
+    public Inscripcion(){
+        alumno = new Alumno();
+        materia = new Materia();
+    }
 
     public Inscripcion(int idInscripcion, Alumno alumno, Materia materia, double nota, boolean estado) {
         this.idInscripcion = idInscripcion;

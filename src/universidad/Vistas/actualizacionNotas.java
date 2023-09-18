@@ -4,20 +4,34 @@
  */
 package universidad.Vistas;
 
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
 import universidad.AccesoADatos.AlumnoData;
+import universidad.AccesoADatos.InscripcionData;
+import universidad.Entidades.Alumno;
+import universidad.Entidades.Inscripcion;
+import universidad.Entidades.Materia;
 
 /**
  *
  * @author luuci
  */
 public class actualizacionNotas extends javax.swing.JInternalFrame {
-
-    /**
-     * Creates new form actualizacionNotas
-     */
+    
+    AlumnoData alumnoData = new AlumnoData();
+    private InscripcionData inscripcionData = new InscripcionData();
+    
+    private DefaultTableModel modelo = new DefaultTableModel(){
+        @Override
+        public boolean isCellEditable(int f, int c) {  // para que la tabla no sea editable
+        return false;
+        }
+    };
+ 
     public actualizacionNotas() {
         initComponents();
-        
+        cargarCombo();
+        armarCabecera();
     }
 
     /**
@@ -40,6 +54,12 @@ public class actualizacionNotas extends javax.swing.JInternalFrame {
         jLabel1.setText("CARGA DE NOTAS");
 
         jLabel2.setText("SELECCIONE ALUMNO:");
+
+        jcbAlumnoCN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbAlumnoCNActionPerformed(evt);
+            }
+        });
 
         jtNotas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -114,6 +134,19 @@ public class actualizacionNotas extends javax.swing.JInternalFrame {
         dispose();
     }//GEN-LAST:event_jbSalirDeNotasActionPerformed
 
+    private void jcbAlumnoCNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbAlumnoCNActionPerformed
+        // Actualizo los datos
+        
+        Alumno alumnoSeleccionado = (Alumno) jcbAlumnoCN.getSelectedItem();
+        
+        List<Inscripcion> inscripciones = inscripcionData.obtenerInscripcionPorAlumno(alumnoSeleccionado.getIdAlumno() );
+        
+        borrarFilasTabla();
+        
+        cargarDatosTabla(inscripciones);
+        
+    }//GEN-LAST:event_jcbAlumnoCNActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
@@ -121,11 +154,39 @@ public class actualizacionNotas extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbGuardarNotas;
     private javax.swing.JButton jbSalirDeNotas;
-    private javax.swing.JComboBox<AlumnoData> jcbAlumnoCN;
+    private javax.swing.JComboBox<Alumno> jcbAlumnoCN;
     private javax.swing.JTable jtNotas;
     // End of variables declaration//GEN-END:variables
     
+    private void cargarCombo() {
+        for (Alumno alumno : alumnoData.listarAlumnos()) {
+            jcbAlumnoCN.addItem(alumno);
+        }
+    }
     
+    private void armarCabecera() {
+        //de la tabla
+        modelo.addColumn("Codigo");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Nota");
+        jtNotas.setModel(modelo);
+    }
     
+    private void cargarDatosTabla(List<Inscripcion> inscripcion) {
+        //de la tabla
+        for (Inscripcion inscrip : inscripcion) {
+            modelo.addRow(new Object[]{ inscrip.getMateria().getIdMateria(), inscrip.getMateria().getNombre(), inscrip.getNota() });
+        }
+    }
 
+    private void borrarFilasTabla() {
+        //para borrar las filas cada vez que selecciono un alumno diferente, elijo mostrar materias cursadas o no cursadas
+        try {
+            int filas = jtNotas.getRowCount() - 1;
+            for (; filas >= 0; filas--) {
+                modelo.removeRow(filas);
+            }
+        } catch (Exception e) {
+        }
+    }
 }

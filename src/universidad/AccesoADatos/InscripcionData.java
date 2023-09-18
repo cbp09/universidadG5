@@ -75,19 +75,21 @@ public class InscripcionData {
     }
 
     public List<Inscripcion> obtenerInscripcionPorAlumno(int id) {
-        String sql = "SELECT* FROM inscripcion WHERE idAlumno =" + id + " and estado = 1";
+        String sql = "SELECT * , if(inscripcion.nota > 0, inscripcion.nota , null) as nota1 FROM inscripcion JOIN materias ON materias.idMateria = inscripcion.idMat WHERE idAlumno = ? and inscripcion.estado = 1";
         ArrayList<Inscripcion> inscripciones = new ArrayList<>();
 
         try {
             PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
-
+            
             while (rs.next()) {
                 Inscripcion inscr = new Inscripcion();
                 inscr.setIdInscripcion(rs.getInt("idInscripto"));
-                inscr.setNota(rs.getDouble("nota"));
-                inscr.getAlumno().setIdAlumno(rs.getInt("idAlumno"));
+                inscr.setNota(rs.getDouble("nota1"));
+                inscr.getAlumno().setIdAlumno(id);
                 inscr.getMateria().setIdMateria(rs.getInt("idMat"));
+                inscr.getMateria().setNombre( rs.getString("nomMat") );
                 inscr.setEstado(true);
 
                 inscripciones.add(inscr);
@@ -187,14 +189,6 @@ public class InscripcionData {
     }
 
     public List<Materia> optenerMateriasNOCurasdas(int idAlumno) {
-        
-        // <Materias> [] = materiasCursadas()
-        // <Materias> [] = MateriaData.ListatarMaterias()
-        
-        // for i in materiasCursadas:
-        //    ListatarMaterias.remove(i)
-        
-        //retunr ListatarMaterias()
         
         // Hay que testear esto 12/09
         String sql = "SELECT * \n"
