@@ -104,7 +104,7 @@ public class consultaAlumnoPorMateria extends javax.swing.JInternalFrame {
 
     private void jbSalirDeConsultasXMateriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirDeConsultasXMateriasActionPerformed
         // BOTON DE SALIR
-        System.exit(0);
+        dispose();
     }//GEN-LAST:event_jbSalirDeConsultasXMateriasActionPerformed
 
 

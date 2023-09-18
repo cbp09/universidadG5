@@ -111,7 +111,7 @@ public class actualizacionNotas extends javax.swing.JInternalFrame {
 
     private void jbSalirDeNotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirDeNotasActionPerformed
         // ACCION DE SALIR DE VENTANA
-        System.exit(0);
+        dispose();
     }//GEN-LAST:event_jbSalirDeNotasActionPerformed
 
 

@@ -164,7 +164,7 @@ public class gestionMateria extends javax.swing.JInternalFrame {
 
     private void jbSalirDeMateriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirDeMateriasActionPerformed
         // BOTON DE SALIR
-        System.exit(0);
+        dispose();
     }//GEN-LAST:event_jbSalirDeMateriasActionPerformed
 
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed

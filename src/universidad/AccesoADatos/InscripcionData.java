@@ -40,7 +40,7 @@ public class InscripcionData {
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
                 insc.setIdInscripcion(rs.getInt(1));
-                JOptionPane.showMessageDialog(null, "Cargado exitoso");
+                JOptionPane.showMessageDialog(null, "Se cargo la inscripcion de forma exitosa");
             }
             ps.close();
 
@@ -101,7 +101,7 @@ public class InscripcionData {
 
     public List<Materia> obstenerMateriasCursadas(int id) {
         String sql = "SELECT inscripcion.idMat, nomMat, año FROM inscripcion JOIN materias"
-                + " ON(inscripcion.idMat = materias.idMateria) WHERE inscripcion.idAlumno = ?";
+                + " ON(inscripcion.idMat = materias.idMateria) WHERE inscripcion.idAlumno = ? and inscripcion.estado = 1";
         ArrayList<Materia> materias = new ArrayList<Materia>();
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -126,12 +126,12 @@ public class InscripcionData {
 
     public void borrarInscripcionMateriaAlumno(int idAlumno, int idMateria) {
 
-        String sql = "UPDATE inscripcion SET estado = 0 WHERE idAlumno =" + idAlumno + " and idMat=" + idMateria;
+        String sql = "UPDATE inscripcion SET estado = 0 WHERE estado = 1 and idAlumno =" + idAlumno + " and idMat=" + idMateria;
 
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             int exito = ps.executeUpdate();
-            if (exito == 1) {
+            if (exito != 0) {
                 JOptionPane.showMessageDialog(null, "Inscripción eliminada");
             } else {
                 JOptionPane.showMessageDialog(null, "No se pudo eliminar la inscripción");
@@ -187,10 +187,19 @@ public class InscripcionData {
     }
 
     public List<Materia> optenerMateriasNOCurasdas(int idAlumno) {
+        
+        // <Materias> [] = materiasCursadas()
+        // <Materias> [] = MateriaData.ListatarMaterias()
+        
+        // for i in materiasCursadas:
+        //    ListatarMaterias.remove(i)
+        
+        //retunr ListatarMaterias()
+        
         // Hay que testear esto 12/09
         String sql = "SELECT * \n"
                 + "from materias as m\n"
-                + "WHERE m.idMateria not in (SELECT idMat FROM inscripcion WHERE idAlumno = ?)";
+                + "WHERE m.idMateria not in (SELECT idMat FROM inscripcion WHERE idAlumno = ? and inscripcion.estado = 1)";
 
         ArrayList<Materia> materias = new ArrayList<Materia>();
 
