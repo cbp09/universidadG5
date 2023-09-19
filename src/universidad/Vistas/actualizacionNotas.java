@@ -132,11 +132,10 @@ public class actualizacionNotas extends javax.swing.JInternalFrame {
 
     private void jcbAlumnoCNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbAlumnoCNActionPerformed
         // Actualizo los datos
-//        Alumno alumnoSeleccionado = (Alumno) jcbAlumnoCN.getSelectedItem();
-//        List<Inscripcion> inscripciones = inscripcionData.obtenerInscripcionPorAlumno(alumnoSeleccionado.getIdAlumno() );
-//        borrarFilasTabla();
-//        cargarDatosTabla(inscripciones);
-        actualizarTabla();
+        Alumno alumnoSeleccionado = (Alumno) jcbAlumnoCN.getSelectedItem();
+        List<Inscripcion> inscripciones = inscripcionData.obtenerInscripcionPorAlumno(alumnoSeleccionado.getIdAlumno() );
+        borrarFilasTabla();
+        cargarDatosTabla(inscripciones);
     }//GEN-LAST:event_jcbAlumnoCNActionPerformed
 
     private void jbGuardarNotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarNotasActionPerformed
@@ -153,7 +152,7 @@ public class actualizacionNotas extends javax.swing.JInternalFrame {
             if (isNumeric(notaMateria)) {
                 int idMateria = ((Integer) modelo.getValueAt(filaSelecionada, 0));
                 inscripcionData.actualizarNota(alumno.getIdAlumno(), idMateria, Double.parseDouble(notaMateria));
-                actualizarTabla();
+                jcbAlumnoCNActionPerformed(evt);
             } else {
                 JOptionPane.showMessageDialog(null, "Debe ingresar una nota válida");
             }
@@ -205,14 +204,7 @@ public class actualizacionNotas extends javax.swing.JInternalFrame {
         } catch (Exception e) {
         }
     }
-
-    private void actualizarTabla() {
-        Alumno alumnoSeleccionado = (Alumno) jcbAlumnoCN.getSelectedItem();
-        List<Inscripcion> inscripciones = inscripcionData.obtenerInscripcionPorAlumno(alumnoSeleccionado.getIdAlumno());
-        borrarFilasTabla();
-        cargarDatosTabla(inscripciones);
-    }
-
+    
     private static boolean isNumeric(String cadena) {
         try {
             Integer.parseInt(cadena);
