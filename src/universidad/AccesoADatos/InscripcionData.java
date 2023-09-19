@@ -146,8 +146,7 @@ public class InscripcionData {
     }
 
     public void actualizarNota(int idAlumno, int idMateria, double nota) {
-        String sql = "UPDATE inscripcion SET nota =" + nota + " WHERE idAlumno=" + idAlumno + " and idMat=" + idMateria;
-
+        String sql = "UPDATE inscripcion SET nota ='" + nota + "' WHERE idAlumno=" + idAlumno + " and idMat=" + idMateria;
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             int exito = ps.executeUpdate();
