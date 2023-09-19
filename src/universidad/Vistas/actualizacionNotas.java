@@ -1,8 +1,14 @@
-
 package universidad.Vistas;
 
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultCellEditor;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import universidad.AccesoADatos.AlumnoData;
 import universidad.AccesoADatos.InscripcionData;
@@ -10,20 +16,18 @@ import universidad.Entidades.Alumno;
 import universidad.Entidades.Inscripcion;
 import universidad.Entidades.Materia;
 
-
 public class actualizacionNotas extends javax.swing.JInternalFrame {
-    
+
     AlumnoData alumnoData = new AlumnoData();
     private InscripcionData inscripcionData = new InscripcionData();
     private DefaultTableModel modelo = new DefaultTableModel();
- 
+
     public actualizacionNotas() {
         initComponents();
         cargarCombo();
         armarCabecera();
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -59,7 +63,6 @@ public class actualizacionNotas extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jtNotas.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(jtNotas);
 
         jbGuardarNotas.setText("GUARDAR");
@@ -133,25 +136,31 @@ public class actualizacionNotas extends javax.swing.JInternalFrame {
 //        List<Inscripcion> inscripciones = inscripcionData.obtenerInscripcionPorAlumno(alumnoSeleccionado.getIdAlumno() );
 //        borrarFilasTabla();
 //        cargarDatosTabla(inscripciones);
-          actualizarTabla();
+        actualizarTabla();
     }//GEN-LAST:event_jcbAlumnoCNActionPerformed
- 
+
     private void jbGuardarNotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarNotasActionPerformed
         //actualizar la nota
-        
         Alumno alumno = (Alumno) jcbAlumnoCN.getSelectedItem(); //obtengo el alumno
         int filaSelecionada = jtNotas.getSelectedRow();         //obtengo la fila selecionada
-        
-        if (filaSelecionada != -1){  // si está una fila seleccionada
-            int idMateria = ((Integer) modelo.getValueAt(filaSelecionada, 0) );
-            double notaMateria = ((Double) modelo.getValueAt(filaSelecionada, 2) );
-            System.out.println(notaMateria);
-            inscripcionData.actualizarNota(alumno.getIdAlumno(), idMateria, notaMateria);
-            actualizarTabla();
-        }else{
+        if (filaSelecionada != -1) {  // si está una fila seleccionada
+            DefaultCellEditor cellEditor = (DefaultCellEditor) jtNotas.getCellEditor();//Tuvimos que buscar un método para que se haga un "enter"
+            if (cellEditor != null) {                                                 //ya que si no tiraba error
+                // Detener la edición si está en curso
+                cellEditor.stopCellEditing();
+            }
+            String notaMateria = (String) (modelo.getValueAt(filaSelecionada, 2));
+            if (isNumeric(notaMateria)) {
+                int idMateria = ((Integer) modelo.getValueAt(filaSelecionada, 0));
+                inscripcionData.actualizarNota(alumno.getIdAlumno(), idMateria, Double.parseDouble(notaMateria));
+                actualizarTabla();
+            } else {
+                JOptionPane.showMessageDialog(null, "Debe ingresar una nota válida");
+            }
+        } else {
             JOptionPane.showMessageDialog(null, "Seleccione una materia primero");
             return;
-        }   
+        }
     }//GEN-LAST:event_jbGuardarNotasActionPerformed
 
 
@@ -164,13 +173,13 @@ public class actualizacionNotas extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox<Alumno> jcbAlumnoCN;
     private javax.swing.JTable jtNotas;
     // End of variables declaration//GEN-END:variables
-    
+
     private void cargarCombo() {
         for (Alumno alumno : alumnoData.listarAlumnos()) {
             jcbAlumnoCN.addItem(alumno);
         }
     }
-    
+
     private void armarCabecera() {
         //de la tabla
         modelo.addColumn("Codigo");
@@ -178,11 +187,11 @@ public class actualizacionNotas extends javax.swing.JInternalFrame {
         modelo.addColumn("Nota");
         jtNotas.setModel(modelo);
     }
-    
+
     private void cargarDatosTabla(List<Inscripcion> inscripcion) {
         //de la tabla
         for (Inscripcion inscrip : inscripcion) {
-            modelo.addRow(new Object[]{ inscrip.getMateria().getIdMateria(), inscrip.getMateria().getNombre(), inscrip.getNota() });
+            modelo.addRow(new Object[]{inscrip.getMateria().getIdMateria(), inscrip.getMateria().getNombre(), inscrip.getNota()});
         }
     }
 
@@ -196,11 +205,20 @@ public class actualizacionNotas extends javax.swing.JInternalFrame {
         } catch (Exception e) {
         }
     }
-    
-     private void actualizarTabla(){
+
+    private void actualizarTabla() {
         Alumno alumnoSeleccionado = (Alumno) jcbAlumnoCN.getSelectedItem();
-        List<Inscripcion> inscripciones = inscripcionData.obtenerInscripcionPorAlumno(alumnoSeleccionado.getIdAlumno() );
+        List<Inscripcion> inscripciones = inscripcionData.obtenerInscripcionPorAlumno(alumnoSeleccionado.getIdAlumno());
         borrarFilasTabla();
-        cargarDatosTabla(inscripciones);    
+        cargarDatosTabla(inscripciones);
+    }
+
+    private static boolean isNumeric(String cadena) {
+        try {
+            Integer.parseInt(cadena);
+            return true;
+        } catch (NumberFormatException ex) {
+            return false;
+        }
     }
 }

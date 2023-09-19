@@ -162,7 +162,7 @@ public class InscripcionData {
     }
 
     public List<Alumno> obtenerAlumnosXMateria(int idMateria) {
-        String sql = "SELECT alumno.* FROM alumno JOIN inscripcion ON(alumno.idAlumno = inscripcion.idAlumno) WHERE inscripcion.idMateria = " + idMateria;
+        String sql = "SELECT alumno.* FROM alumno JOIN inscripcion ON(alumno.idAlumno = inscripcion.idAlumno) WHERE inscripcion.idMat = " + idMateria;
         ArrayList<Alumno> alumnos = new ArrayList<Alumno>();
 
         try {
