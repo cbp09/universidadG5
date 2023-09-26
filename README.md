@@ -5,9 +5,9 @@ Es el proyecto de un software el cual gestiona alumnos de una universidad con in
 El grupo el cual colaboro en la creación esta conformado por:
 
 - Franco Nicolás Dorrego
-- Walter
-- Cristian
-- Lucia
+- Walter Funes
+- Cristian Briant Pimentel
+- Lucia Giles
 
 Se utilizo JAVA orientado a objetos en todo momento. 
 
@@ -16,11 +16,11 @@ Se utilizo JAVA orientado a objetos en todo momento.
 Por el momento no esta compilado, por lo tanto vas a necesitar NetBeans o un editor de código el cual soporte JAVA. Luego XAMPP para tener acceso a la base de datos.
 
 Para probarlo solo segui estos pasos: 
-	1- Con XAPMM levanta el servidor y crea una base de datos en MySQL llamada **universidadg5**.
-	2- Tenes un **archivo .sql** en el repositorio para crear la base de datos por completo.
-	3- Una vez creada la base de datos, abri NetBeans y carga todo el proyecto dentro de El.
-	4- Vas a necesitar cargar los drivers de **mariadB** y **jcalendar** a la parte de librerías.
-	5- Por ultimo anda al paquete **.Vistas y ejecuta Menu_principal.java**
+- Con XAMPP levanta el servidor y crea una base de datos en MySQL llamada **universidadg5**.
+- Tenes un **archivo .sql** en el repositorio para crear la base de datos por completo.
+- Una vez creada la base de datos, abri NetBeans y carga todo el proyecto dentro de El.
+- Vas a necesitar cargar los drivers de **mariadB** y **jcalendar** a la parte de librerías.
+- Por ultimo anda al paquete **.Vistas y ejecuta Menu_principal.java**
 
 Con esos pasos vas a poder cargar todo el software y la base de datos, si no se carga la base de datos, dan avisos de error constantemente. 
 
