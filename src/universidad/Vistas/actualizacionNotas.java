@@ -1,4 +1,4 @@
-package universidad.Vistas;
+ package universidad.Vistas;
 
 import java.awt.AWTException;
 import java.awt.Robot;
@@ -154,7 +154,7 @@ public class actualizacionNotas extends javax.swing.JInternalFrame {
                 inscripcionData.actualizarNota(alumno.getIdAlumno(), idMateria, Double.parseDouble(notaMateria));
                 jcbAlumnoCNActionPerformed(evt);
             } else {
-                JOptionPane.showMessageDialog(null, "Debe ingresar una nota válida");
+                JOptionPane.showMessageDialog(null, "Debe ingresar una nota válida entre 0 y 10");
             }
         } else {
             JOptionPane.showMessageDialog(null, "Seleccione una materia primero");
@@ -207,8 +207,11 @@ public class actualizacionNotas extends javax.swing.JInternalFrame {
     
     private static boolean isNumeric(String cadena) {
         try {
-            Integer.parseInt(cadena);
-            return true;
+            if(Integer.parseInt(cadena) >= 0 && Integer.parseInt(cadena) <= 10){
+                return true;
+            }else{
+                return false;
+            }
         } catch (NumberFormatException ex) {
             return false;
         }

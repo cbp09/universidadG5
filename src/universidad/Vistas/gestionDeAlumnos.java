@@ -1,4 +1,4 @@
-package universidad.Vistas;
+   package universidad.Vistas;
 
 import java.util.Date;
 import universidad.AccesoADatos.AlumnoData;
