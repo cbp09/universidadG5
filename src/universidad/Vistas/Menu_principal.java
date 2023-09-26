@@ -1,8 +1,10 @@
 
 package universidad.Vistas;
 
+import java.sql.Connection;
 import javax.swing.JOptionPane;
 import javax.swing.JFrame;
+import static universidad.AccesoADatos.Conexion.getConexion;
 
 public class Menu_principal extends javax.swing.JFrame {
 
@@ -134,6 +136,11 @@ public class Menu_principal extends javax.swing.JFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
+        
+        if (!compruebaConexion()){
+            return;
+        }
+        
         escritorio.removeAll();
         escritorio.repaint();
         
@@ -147,6 +154,11 @@ public class Menu_principal extends javax.swing.JFrame {
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
+        
+        if (!compruebaConexion()){
+            return;
+        }
+        
         escritorio.removeAll();
         escritorio.repaint();
         
@@ -159,6 +171,11 @@ public class Menu_principal extends javax.swing.JFrame {
 
     private void jMenu3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu3ActionPerformed
         // TODO add your handling code here:
+        
+        if (!compruebaConexion()){
+            return;
+        }
+        
         escritorio.removeAll();
         escritorio.repaint();
         
@@ -171,6 +188,11 @@ public class Menu_principal extends javax.swing.JFrame {
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         // TODO add your handling code here:
+        
+        if (!compruebaConexion()){
+            return;
+        }
+        
         escritorio.removeAll();
         escritorio.repaint();
         
@@ -183,6 +205,11 @@ public class Menu_principal extends javax.swing.JFrame {
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         // TODO add your handling code here:
+        
+        if (!compruebaConexion()){
+            return;
+        }
+        
         escritorio.removeAll();
         escritorio.repaint();
         
@@ -195,6 +222,11 @@ public class Menu_principal extends javax.swing.JFrame {
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         // TODO add your handling code here:
+        
+        if (!compruebaConexion()){
+            return;
+        }
+        
         escritorio.removeAll();
         escritorio.repaint();
         
@@ -264,4 +296,10 @@ public class Menu_principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenu jmSalir;
     // End of variables declaration//GEN-END:variables
+
+    public boolean compruebaConexion(){
+        Connection con = getConexion();
+        return (con != null);
+    }
+
 }

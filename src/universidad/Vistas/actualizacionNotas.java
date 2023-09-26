@@ -148,7 +148,9 @@ public class actualizacionNotas extends javax.swing.JInternalFrame {
                 // Detener la edición si está en curso
                 cellEditor.stopCellEditing();
             }
-            String notaMateria = (String) (modelo.getValueAt(filaSelecionada, 2));
+            System.out.println(modelo.getValueAt(filaSelecionada, 2));
+            String notaMateria = String.valueOf(modelo.getValueAt(filaSelecionada, 2));
+            
             if (isNumeric(notaMateria)) {
                 int idMateria = ((Integer) modelo.getValueAt(filaSelecionada, 0));
                 inscripcionData.actualizarNota(alumno.getIdAlumno(), idMateria, Double.parseDouble(notaMateria));
@@ -158,7 +160,6 @@ public class actualizacionNotas extends javax.swing.JInternalFrame {
             }
         } else {
             JOptionPane.showMessageDialog(null, "Seleccione una materia primero");
-            return;
         }
     }//GEN-LAST:event_jbGuardarNotasActionPerformed
 
@@ -207,7 +208,7 @@ public class actualizacionNotas extends javax.swing.JInternalFrame {
     
     private static boolean isNumeric(String cadena) {
         try {
-            if(Integer.parseInt(cadena) >= 0 && Integer.parseInt(cadena) <= 10){
+            if(Double.parseDouble(cadena) >= 0 && Double.parseDouble(cadena) <= 10){
                 return true;
             }else{
                 return false;
