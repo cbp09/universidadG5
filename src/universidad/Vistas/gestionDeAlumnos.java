@@ -230,8 +230,8 @@ public class gestionDeAlumnos extends javax.swing.JInternalFrame {
         try {
             Alumno alu = new Alumno();
 
-            if (TF_id.getText().equals("")) {
-                JOptionPane.showMessageDialog(null, "Debe buscar primero al Alumno con el DNI.");
+            if (TF_id.getText().isEmpty() || TF_apellido.getText().isEmpty() || TF_nombre.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "No puede tener campos vacios.");
 
             } else {
                 alu.setIdAlumno(Integer.parseInt(TF_id.getText()));
