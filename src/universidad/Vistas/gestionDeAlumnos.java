@@ -187,7 +187,7 @@ public class gestionDeAlumnos extends javax.swing.JInternalFrame {
             LocalDate fechaN = DC_fechaNacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
             if (apellido.equals("") || nombre.equals("")) {
-                JOptionPane.showMessageDialog(null, "Deben estar todos los campos completos");
+                JOptionPane.showMessageDialog(null, "Debe agregar un nombre y/o un apellido");
             } else {
                 Alumno alumno = new Alumno(DNI, nombre, apellido, fechaN, estado);
                 alumnoData.guardarAlumno(alumno);
@@ -196,7 +196,7 @@ public class gestionDeAlumnos extends javax.swing.JInternalFrame {
             limpiar();
 
         } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(null, "Deben estar todos los campos completos");
+            JOptionPane.showMessageDialog(null, "Deben estar todos los campos completos o valor inválido");
         }
     }//GEN-LAST:event_JB_guradarActionPerformed
 
